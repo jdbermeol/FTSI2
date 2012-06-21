@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mlg.acciones.entity;
 
 import com.mlg.acciones.vo.StockVo;
@@ -13,10 +9,13 @@ import javax.persistence.*;
  * @author josebermeo
  */
 @javax.persistence.Entity(name = "Stock")
+@NamedQuery(name = "getStocksByCompanyId",
+    query = "SELECT result FROM Stock result"
+        +"WHERE result.company.id = :companyId")
 public class StockEntity implements Entity<StockVo>, Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String name;
     private String symbol;
     private String description;
@@ -32,11 +31,11 @@ public class StockEntity implements Entity<StockVo>, Serializable{
         this.description = description;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

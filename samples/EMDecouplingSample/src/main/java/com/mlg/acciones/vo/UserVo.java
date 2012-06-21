@@ -4,7 +4,7 @@ import java.util.List;
 
 public class UserVo extends ValueObject {
 
-    private Integer id;
+    private Long id;
     private String userName;
     private String password;
     private List<Integer> rol;
@@ -50,11 +50,11 @@ public class UserVo extends ValueObject {
 
     
     
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

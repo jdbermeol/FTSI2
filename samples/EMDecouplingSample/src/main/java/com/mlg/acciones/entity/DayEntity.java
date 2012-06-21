@@ -9,6 +9,7 @@ import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 /**
  *
@@ -16,7 +17,10 @@ import javax.persistence.Id;
  */
 
 @javax.persistence.Entity(name = "Date")
-public class DayEntity implements Entity<DateVo, Long>, Serializable{
+@NamedQuery(name = "getDateByYearMonthAndDay",
+    query = "SELECT result FROM Date result"
+        +"WHERE result.year_ = :year AND result.month_ = :month AND result.date_ = :day")
+public class DayEntity implements Entity<DateVo>, Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,12 +36,12 @@ public class DayEntity implements Entity<DateVo, Long>, Serializable{
         this.date_ = date;
     }
 
-    @Override
+    //@Override
     public Long getId() {
         return id;
     }
 
-    @Override
+    //@Override
     public void setId(Long id) {
         this.id = id;
     }

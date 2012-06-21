@@ -1,14 +1,13 @@
 package com.mlg.acciones.dao.implementations;
 
-import com.mlg.acciones.dao.CrudDao;
-import com.mlg.acciones.dao.DataBaseException;
-import com.mlg.acciones.dao.Delete;
+import com.mlg.acciones.dao.*;
+import com.mlg.acciones.dao.dataAccess.DataAccessAdapter;
 import com.mlg.acciones.entity.Entity;
 import javax.persistence.EntityManager;
 
+public abstract class CrudDaoImplementation<E, F extends Entity>
+        implements CrudDao<E, F> {
 
-public abstract class CrudDaoImplementation<E extends Entity> implements CrudDao<E> {
-    
     private Delete delete;
 
     public CrudDaoImplementation(Delete delete) {
@@ -16,64 +15,68 @@ public abstract class CrudDaoImplementation<E extends Entity> implements CrudDao
     }
 
     @Override
-    public void create(EntityManager entityManager, E entity)
+    public void create(DataAccessAdapter<EntityManager> dataAccessAdapter, F entity)
             throws DataBaseException {
-        checkEntityManager(entityManager);
+        checkEntityManager(dataAccessAdapter);
         try {
-            entityManager.persist(entity);
+            dataAccessAdapter.getDataAccess().persist(entity);
         } catch (Exception ex) {
             throw new DataBaseException(ex.getMessage(), ex.getCause());
         }
     }
 
     @Override
-    public E update(EntityManager entityManager, E entity)
+    public F update(DataAccessAdapter<EntityManager> dataAccessAdapter, F entity)
             throws DataBaseException {
-        checkEntityManager(entityManager);
+        checkEntityManager(dataAccessAdapter);
         try {
-            return entityManager.merge(entity);
+            return dataAccessAdapter.getDataAccess().merge(entity);
         } catch (Exception ex) {
             throw new DataBaseException(ex.getMessage(), ex.getCause());
         }
     }
 
     @Override
-    public void delete(EntityManager entityManager, long entityId)
+    public void delete(DataAccessAdapter<EntityManager> dataAccessAdapter, E entityId)
             throws DataBaseException {
 
-        checkEntityManager(entityManager);
+        checkEntityManager(dataAccessAdapter);
 
-        E entity = read(entityManager, entityId);
+        F entity = read(dataAccessAdapter, entityId);
         if (entity == null) {
             throw new DataBaseException("entity.notFound");
         }
         try {
-            getDelete().delete(entityManager, entity);
+            getDelete().delete(dataAccessAdapter, entity);
         } catch (Exception e) {
             throw new DataBaseException(e.getMessage(), e.getCause());
         }
     }
 
     @Override
-    public E read(EntityManager entityManager, long entityId)
+    public F read(DataAccessAdapter<EntityManager> dataAccessAdapter, E entityId)
             throws DataBaseException {
-        checkEntityManager(entityManager);
+        checkEntityManager(dataAccessAdapter);
         try {
-            return (E) entityManager.find(getEntityClass(), entityId);
+            return (F) dataAccessAdapter.getDataAccess().find(getEntityClass(), entityId);
         } catch (Exception e) {
             throw new DataBaseException(e.getMessage(), e.getCause());
         }
 
 
     }
-    
-    private Delete getDelete(){
+
+    private Delete getDelete() {
         return delete;
     }
 
-    protected void checkEntityManager(EntityManager entityManager) throws DataBaseException {
-        if (entityManager == null) {
-            throw new DataBaseException("entityManager.null");
+    protected void checkEntityManager(DataAccessAdapter<EntityManager> dataAccessAdapter) 
+            throws DataBaseException {
+        if (dataAccessAdapter == null) {
+            throw new DataBaseException("dataAccessAdapter.null");
+        }
+        if (dataAccessAdapter.getDataAccess() == null) {
+            throw new DataBaseException("dataAccessAdapter.dataAccess.null");
         }
     }
 

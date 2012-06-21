@@ -1,10 +1,6 @@
 package com.mlg.acciones.entity;
 
-public interface Entity<E,F> {
-
-    F getId();
-
-    void setId(F id);
+public interface Entity<E> {
 
     E toVo();
 }
