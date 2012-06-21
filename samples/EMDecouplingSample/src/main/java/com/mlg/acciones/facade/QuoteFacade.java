@@ -4,18 +4,19 @@
  */
 package com.mlg.acciones.facade;
 
+import com.mlg.acciones.dao.dataAccess.AbstractDataAccessFactory;
 import com.mlg.acciones.vo.QuoteVo;
 import java.util.List;
-import org.xtremeware.testapp.da.DataAccessAdapter;
+
 
 /**
  *
  * @author Owner
  */
 public class QuoteFacade {
-	private DataAccessAdapter dataAccess;
+	private AbstractDataAccessFactory dataAccess;
 
-	public QuoteFacade(DataAccessAdapter dataAccess) {
+	public QuoteFacade(AbstractDataAccessFactory dataAccess) {
 		this.dataAccess = dataAccess;
 	}
 

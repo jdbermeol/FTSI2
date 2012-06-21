@@ -1,7 +1,7 @@
 package com.mlg.acciones.dao.dataAccess.implementations;
 
-import com.mlg.acciones.dao.DataBaseException;
 import com.mlg.acciones.dao.dataAccess.DataAccessAdapter;
+import com.mlg.acciones.dao.dataAccess.DataAccessException;
 import javax.persistence.EntityManager;
 
 /**
@@ -20,22 +20,38 @@ public class DataAccesAdapterImplementation extends DataAccessAdapter<EntityMana
     }
 
     @Override
-    public void beginTransaction() throws DataBaseException {
-       getDataAccess().getTransaction().begin();
+    public void beginTransaction(){
+        try{
+            getDataAccess().getTransaction().begin();
+        }catch(Exception exception){
+            throw new DataAccessException(exception.getMessage(), exception);
+        }
     }
 
     @Override
-    public void commit() throws DataBaseException {
-        getDataAccess().getTransaction().commit();
+    public void commit() throws DataAccessException {
+        try{
+            getDataAccess().getTransaction().commit();
+        }catch(Exception exception){
+            throw new DataAccessException(exception.getMessage(), exception);
+        }
     }
 
     @Override
-    public void rollback() throws DataBaseException {
-        getDataAccess().getTransaction().rollback();
+    public void rollback() throws DataAccessException {
+        try{
+            getDataAccess().getTransaction().rollback();
+        }catch(Exception exception){
+            throw new DataAccessException(exception.getMessage(), exception);
+        }
     }
 
     @Override
-    public void close() throws DataBaseException {
-        getDataAccess().close();
+    public void close() throws DataAccessException {
+        try{
+            getDataAccess().close();
+        }catch(Exception exception){
+            throw new DataAccessException(exception.getMessage(), exception);
+        }
     }
 }

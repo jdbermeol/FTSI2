@@ -1,13 +1,10 @@
 package com.mlg.acciones.dao.dataAccess;
 
-import com.mlg.acciones.dao.DataBaseException;
-
 public abstract class DataAccessAdapter<E> {
 
     private E dataAccess;
 
     public DataAccessAdapter(E dataAccess) {
-        checkDataAccessClass(dataAccess);
         this.dataAccess = dataAccess;
     }
 
@@ -23,12 +20,12 @@ public abstract class DataAccessAdapter<E> {
         }
     }
 
-    public abstract void beginTransaction() throws DataBaseException;
+    public abstract void beginTransaction();
 
-    public abstract void commit() throws DataBaseException;
+    public abstract void commit();
 
-    public abstract void rollback() throws DataBaseException;
+    public abstract void rollback();
 
-    public abstract void close() throws DataBaseException;
+    public abstract void close();
 
 }
