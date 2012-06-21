@@ -1,9 +1,5 @@
 package com.mlg.acciones.service;
 
-import java.nio.charset.Charset;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import org.owasp.validator.html.AntiSamy;
 import org.owasp.validator.html.CleanResults;
 import org.owasp.validator.html.Policy;
@@ -24,7 +20,7 @@ public final class SecurityHelper {
             policy = Policy.getInstance(getClass().getResourceAsStream(policyFile));
             antiSamy = new AntiSamy(policy);
         } catch (PolicyException ex) {
-            throw new ExternalServiceConnectionException("The specified ANTISAMY policy file for the SecuirtyHelper cannot be accessed");
+            throw new ExternalServiceException("The specified ANTISAMY policy file for the SecuirtyHelper cannot be accessed");
         }
     }
 
@@ -44,32 +40,32 @@ public final class SecurityHelper {
             CleanResults cr = getInstance().getAntiSamy().scan(input, getInstance().getPolicy());
             input = cr.getCleanHTML();
         } catch (Exception ex) {
-            Config.getInstance().getServiceFactory().getLogService().error(ex.getMessage(), ex);
-            throw new ExternalServiceConnectionException("There was a problem while sanitizing", ex);
+            //Config.getInstance().getServiceFactory().getLogService().error(ex.getMessage(), ex);
+            throw new ExternalServiceException("There was a problem while sanitizing", ex);
         }
         return input;
     }
 
-    public static String hashPassword(String password) {
-        String hash = null;
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(password.getBytes(Charset.forName("UTF-8")));
-
-            byte[] mdbytes = md.digest();
-
-            //convert the byte to hex format method 1
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < mdbytes.length; i++) {
-                sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16).substring(1));
-            }
-            hash = sb.toString();
-        } catch (NoSuchAlgorithmException ex) {
-            ///Es casi imposible que pase esto
-            Config.getInstance().getServiceFactory().getLogService().error(ex.getMessage(), ex);
-        }
-        return hash;
-    }
+//    public static String hashPassword(String password) {
+//        String hash = null;
+//        try {
+//            MessageDigest md = MessageDigest.getInstance("SHA-256");
+//            md.update(password.getBytes(Charset.forName("UTF-8")));
+//
+//            byte[] mdbytes = md.digest();
+//
+//            //convert the byte to hex format method 1
+//            StringBuilder sb = new StringBuilder();
+//            for (int i = 0; i < mdbytes.length; i++) {
+//                sb.append(Integer.toString((mdbytes[i] & 0xff) + 0x100, 16).substring(1));
+//            }
+//            hash = sb.toString();
+//        } catch (NoSuchAlgorithmException ex) {
+//            ///Es casi imposible que pase esto
+//            Config.getInstance().getServiceFactory().getLogService().error(ex.getMessage(), ex);
+//        }
+//        return hash;
+//    }
 
     public AntiSamy getAntiSamy() {
         return antiSamy;

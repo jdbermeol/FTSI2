@@ -1,6 +1,5 @@
 package com.mlg.acciones.dao.dataAccess;
 
-import com.mlg.acciones.dao.AbstractDaoFactory.DaoFactoryTypes;
 import com.mlg.acciones.dao.DataBaseException;
 
 public abstract class DataAccessAdapter<E> {
@@ -32,5 +31,4 @@ public abstract class DataAccessAdapter<E> {
 
     public abstract void close() throws DataBaseException;
 
-    public abstract DaoFactoryTypes getType();
 }

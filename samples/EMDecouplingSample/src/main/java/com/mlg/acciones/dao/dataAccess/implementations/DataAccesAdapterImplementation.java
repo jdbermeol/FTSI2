@@ -38,9 +38,4 @@ public class DataAccesAdapterImplementation extends DataAccessAdapter<EntityMana
     public void close() throws DataBaseException {
         getDataAccess().close();
     }
-
-    @Override
-    public DaoFactoryTypes getType() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }
