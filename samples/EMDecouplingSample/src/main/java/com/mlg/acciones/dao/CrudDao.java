@@ -1,15 +1,16 @@
 package com.mlg.acciones.dao;
 
+import com.mlg.acciones.dao.dataAccess.DataAccessAdapter;
 import com.mlg.acciones.entity.Entity;
 import javax.persistence.EntityManager;
 
-public interface CrudDao<E extends Entity> {
+public interface CrudDao<E, F extends Entity> {
+    
+    void create(DataAccessAdapter<EntityManager> dataAccessAdapter, F vo) throws DataBaseException;
 
-    public void create(EntityManager entityManager, E vo) throws DataBaseException;
+    F update(DataAccessAdapter<EntityManager> dataAccessAdapter, F vo) throws DataBaseException;
 
-    public E update(EntityManager entityManager, E vo) throws DataBaseException;
+    void delete(DataAccessAdapter<EntityManager> dataAccessAdapter, E id) throws DataBaseException;
 
-    public void delete(EntityManager entityManager, long id) throws DataBaseException;
-
-    public E read(EntityManager entityManager, long id) throws DataBaseException;
+    F read(DataAccessAdapter<EntityManager> dataAccessAdapter, E id) throws DataBaseException;
 }

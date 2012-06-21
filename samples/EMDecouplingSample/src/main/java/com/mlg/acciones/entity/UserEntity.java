@@ -5,12 +5,16 @@ import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 @javax.persistence.Entity(name = "User")
+@NamedQuery(name = "getUserByUserNameAndPassword",
+    query = "SELECT result FROM User result"
+        +"WHERE result.userName = :userName AND result.password = :password")
 public class UserEntity implements Entity<UserVo>, Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String userName;
     private String password;
     
@@ -18,11 +22,11 @@ public class UserEntity implements Entity<UserVo>, Serializable {
     public UserEntity() {
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

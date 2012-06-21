@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mlg.acciones.vo;
 
 /**
@@ -10,14 +6,14 @@ package com.mlg.acciones.vo;
  */
 public class QuoteVo extends ValueObject{
     
-    private Integer id;
+    private Long id;
     private double low;
     private double high;
     private double open;
     private double close;
     private double volume;
-    private Integer date;
-    private Integer stock;
+    private Long date;
+    private Long stock;
 
     @Override
     public boolean equals(Object obj) {
@@ -80,11 +76,11 @@ public class QuoteVo extends ValueObject{
         this.close = close;
     }
 
-    public Integer getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(Integer date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 
@@ -96,11 +92,11 @@ public class QuoteVo extends ValueObject{
         this.high = high;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -128,11 +124,11 @@ public class QuoteVo extends ValueObject{
         this.volume = volume;
     }
 
-    public Integer getStock() {
+    public Long getStock() {
         return stock;
     }
 
-    public void setStock(Integer stock) {
+    public void setStock(Long stock) {
         this.stock = stock;
     }
     

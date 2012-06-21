@@ -6,20 +6,20 @@ package com.mlg.acciones.entity;
 
 import com.mlg.acciones.vo.QuoteVo;
 import java.io.Serializable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 /**
  *
  * @author josebermeo
  */
 @javax.persistence.Entity(name = "Quote")
+@NamedQuery(name = "getQuotesByStockId",
+    query = "SELECT result FROM Quote result"
+        +"WHERE result.stock.id = :stockId")
 public class QuoteEntity implements Entity<QuoteVo>, Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private double low;
     private double high;
     private double open_;
@@ -56,11 +56,11 @@ public class QuoteEntity implements Entity<QuoteVo>, Serializable{
         this.high = high;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

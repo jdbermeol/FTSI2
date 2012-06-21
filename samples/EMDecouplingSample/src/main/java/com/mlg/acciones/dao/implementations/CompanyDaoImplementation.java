@@ -3,6 +3,7 @@ package com.mlg.acciones.dao.implementations;
 import com.mlg.acciones.dao.CompanyDao;
 import com.mlg.acciones.dao.DataBaseException;
 import com.mlg.acciones.dao.Delete;
+import com.mlg.acciones.dao.dataAccess.DataAccessAdapter;
 import com.mlg.acciones.entity.CompanyEntity;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -11,8 +12,8 @@ import javax.persistence.EntityManager;
  *
  * @author josebermeo
  */
-public class CompanyDaoImplementation extends CrudDaoImplementation<CompanyEntity>
-    implements CompanyDao{
+public class CompanyDaoImplementation extends CrudDaoImplementation<Integer, CompanyEntity>
+        implements CompanyDao {
 
     public CompanyDaoImplementation(Delete delete) {
         super(delete);
@@ -24,25 +25,24 @@ public class CompanyDaoImplementation extends CrudDaoImplementation<CompanyEntit
     }
 
     @Override
-    public List<CompanyEntity> getAll(EntityManager entityManager) throws DataBaseException {
-        checkEntityManager(entityManager);
+    public List<CompanyEntity> getAll(DataAccessAdapter<EntityManager> dataAccessAdapter) throws DataBaseException {
+        checkEntityManager(dataAccessAdapter);
         try {
-            return entityManager.createNamedQuery("getAllCompanies",CompanyEntity.class).getResultList();
+            return dataAccessAdapter.getDataAccess()
+                    .createNamedQuery("getAllCompanies", CompanyEntity.class).getResultList();
         } catch (Exception e) {
             throw new DataBaseException(e.getMessage(), e.getCause());
         }
     }
 
     @Override
-    public List<CompanyEntity> getByMarketId(EntityManager entityManager, int marketId) throws DataBaseException {
-        checkEntityManager(entityManager);
+    public List<CompanyEntity> getByMarketId(DataAccessAdapter<EntityManager> dataAccessAdapter, int marketId) throws DataBaseException {
+        checkEntityManager(dataAccessAdapter);
         try {
-            return entityManager.createNamedQuery("getCompaniesByMarketId",CompanyEntity.class)
-                    .setParameter("marketId", marketId)
-                    .getResultList();
+            return dataAccessAdapter.getDataAccess()
+                    .createNamedQuery("getCompaniesByMarketId", CompanyEntity.class).setParameter("marketId", marketId).getResultList();
         } catch (Exception e) {
             throw new DataBaseException(e.getMessage(), e.getCause());
         }
     }
-    
 }

@@ -5,13 +5,16 @@ import java.io.Serializable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author josebermeo
  */
 @javax.persistence.Entity(name = "Market")
-public class MarketEntity implements Entity<MarketVo,Integer>, Serializable {
+@NamedQuery(name = "getAllMarkets",
+    query = "SELECT result Market Date result")
+public class MarketEntity implements Entity<MarketVo>, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

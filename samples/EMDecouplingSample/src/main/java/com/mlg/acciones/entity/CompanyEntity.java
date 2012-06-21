@@ -16,7 +16,7 @@ import javax.persistence.*;
     query = "SELECT result FROM Company result "
     + "WHERE result.MarketEntity.id = :marketId")
 })
-public class CompanyEntity implements Entity<CompanyVo,Integer>, Serializable{
+public class CompanyEntity implements Entity<CompanyVo>, Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -46,12 +46,10 @@ public class CompanyEntity implements Entity<CompanyVo,Integer>, Serializable{
         this.description = description;
     }
 
-    @Override
     public Integer getId() {
         return id;
     }
 
-    @Override
     public void setId(Integer id) {
         this.id = id;
     }

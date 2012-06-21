@@ -1,5 +1,6 @@
 package com.mlg.acciones.dao;
 
+import com.mlg.acciones.dao.dataAccess.DataAccessAdapter;
 import com.mlg.acciones.entity.Entity;
 import javax.persistence.EntityManager;
 
@@ -9,6 +10,6 @@ import javax.persistence.EntityManager;
  */
 public interface Delete<E extends Entity> {
 
-    void delete(EntityManager entityManager, E entity)
+    void delete(DataAccessAdapter<EntityManager> dataAccessAdapter, E entity)
             throws DataBaseException;
 }

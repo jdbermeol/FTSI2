@@ -1,10 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mlg.acciones.vo;
-
-import java.util.List;
 
 /**
  *
@@ -12,7 +6,7 @@ import java.util.List;
  */
 public class StockVo extends ValueObject{
 
-    private Integer id;
+    private Long id;
     private String name;
     private String symbol;
     private String description;
@@ -62,11 +56,11 @@ public class StockVo extends ValueObject{
         this.description = description;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
