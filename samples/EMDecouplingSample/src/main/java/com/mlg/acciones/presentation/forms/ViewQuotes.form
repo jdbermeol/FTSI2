@@ -16,7 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -25,40 +25,43 @@
                   <Component id="marketEditButton" max="32767" attributes="0"/>
                   <Component id="marketDeleteButton" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="companyDeleteButton" alignment="0" max="32767" attributes="0"/>
-                  <Component id="companyCreateButton" alignment="1" pref="168" max="32767" attributes="0"/>
+                  <Component id="companyCreateButton" alignment="1" max="32767" attributes="0"/>
                   <Component id="companyEditButton" alignment="0" max="32767" attributes="0"/>
                   <Component id="jScrollPane2" alignment="0" pref="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="stockEditButton" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="stockCreateButton" alignment="0" pref="143" max="32767" attributes="0"/>
-                  <Component id="stockDeleteButton" max="32767" attributes="0"/>
-                  <Component id="jScrollPane3" alignment="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jSeparator2" min="-2" pref="4" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jScrollPane4" alignment="0" min="-2" pref="156" max="-2" attributes="0"/>
-                  <Component id="quoteCreateButton" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
-                  <Component id="quoteEditButton" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
-                  <Component id="quoteDeleteButton" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Component id="stockCreateButton" alignment="0" pref="228" max="32767" attributes="0"/>
+                  <Component id="stockEditButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="stockDeleteButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="0" pref="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="22" max="32767" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="quoteCreateButton" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane4" alignment="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="quoteDeleteButton" alignment="0" pref="214" max="32767" attributes="0"/>
+                  <Component id="quoteEditButton" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -142,11 +145,15 @@
         <Component class="javax.swing.JList" name="marketList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new ModeloLista&lt;MarketVo&gt;(FacadeFactory.getInstance().getMarketFacade().getAll())" type="code"/>
+              <Connection code="marketsListModel&#xa;" type="code"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="marketListMouseClicked"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="marketList.setCellRenderer(new CompanyListRenderer());"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="List&lt;MarketVo&gt; availableMarkets = ApplicationConfig.getInstance().getFacadeFactory().getMarketFacade().getAll();&#xa;AbstractListModel marketsListModel;&#xa;if(availableMarkets.isEmpty()){&#xa;&#x9;marketsListModel = emptyMarketsListModel;&#xa;}else{&#xa;&#x9;marketsListModel = new ModeloLista&lt;MarketVo&gt;(availableMarkets);&#xa;}"/>
           </AuxValues>
         </Component>
       </SubComponents>
@@ -166,12 +173,12 @@
         <Component class="javax.swing.JList" name="companyList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new ModeloLista&lt;CompanyVo&gt;(FacadeFactory.getInstance().getCompanyFacade().getAll(((MarketVo)marketList.getSelectedValue()).getId()))" type="code"/>
+              <Connection code="defaultCompaniesListModel&#xa;" type="code"/>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="companyList.setCellRenderer(new CompanyListRenderer());"/>
-          </AuxValues>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="companyListMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -200,12 +207,12 @@
         <Component class="javax.swing.JList" name="stockList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new ModeloLista&lt;StockVo&gt;(FacadeFactory.getInstance().getStockFacade().getAll(((CompanyVo)companyList.getSelectedValue()).getId()))" type="code"/>
+              <Connection code="defaultStocksListModel" type="code"/>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="stockList.setCellRenderer(new StockListRenderer());"/>
-          </AuxValues>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="stockListMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -225,7 +232,6 @@
     <Component class="javax.swing.JButton" name="marketCreateButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create market"/>
-        <Property name="actionCommand" type="java.lang.String" value="Create market"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="marketCreateButtonActionPerformed"/>
@@ -307,12 +313,9 @@
         <Component class="javax.swing.JList" name="quoteList">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new ModeloLista&lt;QuoteVo&gt;(FacadeFactory.getInstance().getQuoteFacade().getAll(((StockVo)stockList.getSelectedValue()).getId()))" type="code"/>
+              <Connection code="defaultQuotesListModel" type="code"/>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="stockList.setCellRenderer(new StockListRenderer());"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
