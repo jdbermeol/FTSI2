@@ -1,61 +1,68 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mlg.acciones.facade;
 
-import org.xtremeware.testapp.da.DataAccessAdapter;
+import com.mlg.acciones.dao.dataAccess.AbstractDataAccessFactory;
+import com.mlg.acciones.service.ServiceBuilder;
 
 /**
  *
  * @author Owner
  */
-public class FacadeFactory implements FacadeFactoryInterface{
+public class FacadeFactory implements FacadeFactoryInterface {
 
     private MarketFacade marketFacade;
     private CompanyFacade companyFacade;
     private StockFacade stockFacade;
     private QuoteFacade quoteFacade;
-	private DataAccessAdapter generalSource;
-	private DataAccessAdapter authenticationSource;
-	private DateFacade dateFacade;
+    private AbstractDataAccessFactory generalSource;
+    private AbstractDataAccessFactory authenticationSource;
+    private ServiceBuilder serviceBuilder;
+    private DateFacade dateFacade;
 
-	public FacadeFactory(DataAccessAdapter generalSource, DataAccessAdapter authenticationSource) {
-		this.generalSource = generalSource;
-		this.authenticationSource = authenticationSource;
-	}
+    public FacadeFactory(AbstractDataAccessFactory generalSource, 
+            AbstractDataAccessFactory authenticationSource,
+            ServiceBuilder serviceBuilder) {
+        this.generalSource = generalSource;
+        this.authenticationSource = authenticationSource;
+        this.serviceBuilder = serviceBuilder;
+    }
 
+    @Override
     public MarketFacade getMarketFacade() {
         if (marketFacade == null) {
-            marketFacade = new MarketFacade(generalSource);
+            marketFacade = new MarketFacade(generalSource,serviceBuilder);
         }
         return marketFacade;
     }
-    public CompanyFacade getCompanyFacade(){
-        if(companyFacade ==null){
+
+    @Override
+    public CompanyFacade getCompanyFacade() {
+        if (companyFacade == null) {
             companyFacade = new CompanyFacade(generalSource);
         }
         return companyFacade;
     }
-    public StockFacade getStockFacade(){
-        if(stockFacade ==null){
+
+    @Override
+    public StockFacade getStockFacade() {
+        if (stockFacade == null) {
             stockFacade = new StockFacade(generalSource);
         }
         return stockFacade;
     }
-    
-    public QuoteFacade getQuoteFacade(){
-        if(quoteFacade ==null){
+
+    @Override
+    public QuoteFacade getQuoteFacade() {
+        if (quoteFacade == null) {
             quoteFacade = new QuoteFacade(generalSource);
         }
         return quoteFacade;
     }
 
-	public DateFacade getDateFacade(){
-		if(dateFacade == null){
-			dateFacade = new DateFacade(generalSource);
-		}
-		return dateFacade;
-	}
-    
+    @Override
+    public DateFacade getDateFacade() {
+        if (dateFacade == null) {
+            dateFacade = new DateFacade(generalSource);
+        }
+        return dateFacade;
+    }
 }
