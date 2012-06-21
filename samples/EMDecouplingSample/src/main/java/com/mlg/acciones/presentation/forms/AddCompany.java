@@ -4,6 +4,7 @@
  */
 package com.mlg.acciones.presentation.forms;
 
+import com.mlg.acciones.helper.ApplicationConfig;
 import com.mlg.acciones.vo.CompanyVo;
 import com.mlg.acciones.vo.MarketVo;
 
@@ -18,13 +19,31 @@ public class AddCompany extends javax.swing.JPanel {
 	/**
 	 * Creates new form AddMarket
 	 */
-	public AddCompany(MarketVo market) {
+	public AddCompany(CompanyVo existingVo) {
+
+		MarketVo marketVo = null;
+		if (existingVo != null) {
+			nameTextField.setText(existingVo.getName());
+			descriptionTextArea.setText(existingVo.getDescription());
+			symbolTextField.setText(existingVo.getSymbol());
+			marketVo = ApplicationConfig.getInstance().getFacadeFactory().getMarketFacade().getById(existingVo.getMarket());
+		}
+		setMarket(market);
+		initComponents();
+	}
+
+	private void setMarket(MarketVo market) {
 		if (market == null) {
 			this.market = new MarketVo();
-			this.market.setName("");
+			this.market.setName(" new market");
 		} else {
 			this.market = market;
 		}
+
+	}
+
+	public AddCompany() {
+		setMarket(null);
 		initComponents();
 	}
 
@@ -130,7 +149,7 @@ public class AddCompany extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

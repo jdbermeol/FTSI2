@@ -39,6 +39,12 @@
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
       <version>3.3.2.GA</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>ejb3-persistence</artifactId>
+          <groupId>org.hibernate</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>mysql</groupId>

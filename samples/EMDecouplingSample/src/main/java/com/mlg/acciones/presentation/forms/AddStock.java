@@ -4,6 +4,7 @@
  */
 package com.mlg.acciones.presentation.forms;
 
+import com.mlg.acciones.helper.ApplicationConfig;
 import com.mlg.acciones.vo.CompanyVo;
 import com.mlg.acciones.vo.StockVo;
 
@@ -18,7 +19,12 @@ public class AddStock extends javax.swing.JPanel {
 	/**
 	 * Creates new form AddMarket
 	 */
-	public AddStock(CompanyVo initialCompany) {
+	public AddStock() {
+		setCompany(null);
+		initComponents();
+	}
+
+	private void setCompany(CompanyVo initialCompany){
 		if (initialCompany == null) {
 			this.company = new CompanyVo();
 			this.company.setName("");
@@ -26,7 +32,17 @@ public class AddStock extends javax.swing.JPanel {
 
 			this.company = initialCompany;
 		}
+	}
+
+	public AddStock(StockVo existingVo){
 		initComponents();
+		if(existingVo != null){
+			nameTextField.setText(existingVo.getName());
+			symbolTextField.setText(existingVo.getSymbol());
+			descriptionTextArea.setText(existingVo.getDescription());
+			CompanyVo company  = ApplicationConfig.getInstance().getFacadeFactory().getCompanyFacade().getById(existingVo.getCompany());
+		}
+		setCompany(company);
 	}
 
 	public StockVo getStock() {

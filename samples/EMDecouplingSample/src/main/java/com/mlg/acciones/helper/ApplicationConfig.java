@@ -1,6 +1,7 @@
 
 package com.mlg.acciones.helper;
 
+import com.mlg.acciones.dao.dataAccess.implementations.DataAccesAdapterImplementation;
 import com.mlg.acciones.facade.FacadeFactory;
 import com.mlg.acciones.facade.FacadeFactoryInterface;
 import javax.persistence.EntityManager;
@@ -16,7 +17,7 @@ public class ApplicationConfig {
 	public static synchronized ApplicationConfig getInstance(){
 		if(instance == null){
 			//TODO : Config sources according to DAA and persistenceUnits available
-			DataAccessAdapter<EntityManager> generalSource;
+			DataAccessAdapter<EntityManager> generalSource = new DataAccesAdapterImplementation(generalSource);
 			DataAccessAdapter<EntityManager> authSource;
 			instance = new ApplicationConfig(generalSource,authSource);
 		}

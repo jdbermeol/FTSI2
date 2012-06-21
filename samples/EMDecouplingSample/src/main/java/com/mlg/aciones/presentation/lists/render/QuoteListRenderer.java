@@ -19,7 +19,6 @@ import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import org.xtremeware.testapp.helper.Application;
 
 /**
  *
