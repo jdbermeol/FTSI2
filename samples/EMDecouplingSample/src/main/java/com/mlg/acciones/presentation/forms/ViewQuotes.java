@@ -4,6 +4,7 @@
  */
 package com.mlg.acciones.presentation.forms;
 
+import com.mlg.acciones.dao.DataBaseException;
 import com.mlg.acciones.helper.ApplicationConfig;
 import com.mlg.acciones.vo.CompanyVo;
 import com.mlg.acciones.vo.MarketVo;
@@ -14,6 +15,8 @@ import com.mlg.aciones.presentation.lists.render.CompanyListRenderer;
 import com.mlg.aciones.presentation.lists.render.QuoteListRenderer;
 import com.mlg.aciones.presentation.lists.render.StockListRenderer;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ListCellRenderer;

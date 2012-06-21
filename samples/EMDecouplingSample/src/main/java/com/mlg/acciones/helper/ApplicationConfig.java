@@ -1,24 +1,24 @@
 
 package com.mlg.acciones.helper;
 
-import com.mlg.acciones.dao.dataAccess.implementations.DataAccesAdapterImplementation;
+import com.mlg.acciones.dao.dataAccess.AbstractDataAccessFactory;
+import com.mlg.acciones.dao.dataAccess.implementations.DataAccessFactoryImplementation;
 import com.mlg.acciones.facade.FacadeFactory;
 import com.mlg.acciones.facade.FacadeFactoryInterface;
-import javax.persistence.EntityManager;
-import org.xtremeware.testapp.da.DataAccessAdapter;
+import com.mlg.acciones.service.ServiceBuilder;
 
 public class ApplicationConfig {
 	private static ApplicationConfig instance;
 	private FacadeFactoryInterface facadeFactory;
 
-	private ApplicationConfig(DataAccessAdapter generalSource, DataAccessAdapter authSource){
-		this.facadeFactory = new FacadeFactory(generalSource, authSource);
+	private ApplicationConfig(AbstractDataAccessFactory generalSource, AbstractDataAccessFactory authSource){
+		this.facadeFactory = new FacadeFactory(generalSource, authSource, new ServiceBuilder());
 	}
 	public static synchronized ApplicationConfig getInstance(){
 		if(instance == null){
 			//TODO : Config sources according to DAA and persistenceUnits available
-			DataAccessAdapter<EntityManager> generalSource = new DataAccesAdapterImplementation(generalSource);
-			DataAccessAdapter<EntityManager> authSource;
+			AbstractDataAccessFactory generalSource = new DataAccessFactoryImplementation("database");
+			AbstractDataAccessFactory authSource = new DataAccessFactoryImplementation("authentication");
 			instance = new ApplicationConfig(generalSource,authSource);
 		}
 		return instance;

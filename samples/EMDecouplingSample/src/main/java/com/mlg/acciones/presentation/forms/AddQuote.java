@@ -38,9 +38,8 @@ public class AddQuote extends javax.swing.JPanel {
 		quote.setOpen(open);
 		quote.setVolume(volume);
 		quote.setStock(stock.getId());
-		String date = 
-		ApplicationConfig.getInstance().getFacadeFactory().getDateFacade().getOrCreateDate(date,month,year);
-		quote.setDate(WIDTH);
+		//ApplicationConfig.getInstance().getFacadeFactory().getDateFacade().getOrCreateDate(date,month,year);
+		//quote.setDate(WIDTH);
 
 		return quote;
 	}

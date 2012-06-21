@@ -40,7 +40,7 @@ public class AddStock extends javax.swing.JPanel {
 			nameTextField.setText(existingVo.getName());
 			symbolTextField.setText(existingVo.getSymbol());
 			descriptionTextArea.setText(existingVo.getDescription());
-			CompanyVo company  = ApplicationConfig.getInstance().getFacadeFactory().getCompanyFacade().getById(existingVo.getCompany());
+			//CompanyVo company  = ApplicationConfig.getInstance().getFacadeFactory().getCompanyFacade().getById(existingVo.getCompany());
 		}
 		setCompany(company);
 	}

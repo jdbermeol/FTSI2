@@ -26,7 +26,7 @@ public final class SecurityHelper {
 
     private static SecurityHelper getInstance() {
         while (instance == null) {
-            instance = new SecurityHelper(ConfigurationVariablesHelper.getVariable(ConfigurationVariablesHelper.ANTISAMY_POLICY_FILE));
+            //instance = new SecurityHelper(ConfigurationVariablesHelper.getVariable(ConfigurationVariablesHelper.ANTISAMY_POLICY_FILE));
         }
         return instance;
     }

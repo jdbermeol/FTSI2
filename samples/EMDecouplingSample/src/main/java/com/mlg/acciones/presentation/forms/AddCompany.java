@@ -26,7 +26,7 @@ public class AddCompany extends javax.swing.JPanel {
 			nameTextField.setText(existingVo.getName());
 			descriptionTextArea.setText(existingVo.getDescription());
 			symbolTextField.setText(existingVo.getSymbol());
-			marketVo = ApplicationConfig.getInstance().getFacadeFactory().getMarketFacade().getById(existingVo.getMarket());
+			//marketVo = ApplicationConfig.getInstance().getFacadeFactory().getMarketFacade().getById(existingVo.getMarket());
 		}
 		setMarket(market);
 		initComponents();

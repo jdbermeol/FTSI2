@@ -28,14 +28,14 @@ public class MarketFacade {
         this.serviceBuilder = seviceBuilder;
     }
 
-    public List<MarketVo> getAll() throws DataBaseException {
+    public List<MarketVo> getAll() {
         DataAccessAdapter dataAccessAdapter = null;
         List<MarketVo> results = new ArrayList<MarketVo>();
         try {
             dataAccessAdapter = dataSource.createDataAccess();
             results = serviceBuilder.getMarketService().getAll(dataAccessAdapter);
         } catch (Exception exception) {
-            FacadesHelper.checkException(dataAccessAdapter, exception, DataBaseException.class);
+			exception.printStackTrace();
         } finally {
             FacadesHelper.closeEntityManager(dataAccessAdapter);
         }
