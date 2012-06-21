@@ -14,6 +14,7 @@ public class FacadeFactory {
     private MarketFacade marketFacade;
     private CompanyFacade companyFacade;
     private StockFacade stockFacade;
+    private QuoteFacade quoteFacade;
 
     private FacadeFactory() {
     }
@@ -43,4 +44,12 @@ public class FacadeFactory {
         }
         return stockFacade;
     }
+    
+    public QuoteFacade getQuoteFacade(){
+        if(quoteFacade ==null){
+            quoteFacade = new QuoteFacade();
+        }
+        return quoteFacade;
+    }
+    
 }
