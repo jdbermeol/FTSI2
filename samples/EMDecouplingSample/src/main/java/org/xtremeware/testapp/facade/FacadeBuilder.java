@@ -1,6 +1,6 @@
 package org.xtremeware.testapp.facade;
 
-import org.xtremeware.testapp.dao.AbstractDaoFactory;
+import com.mlg.acciones.dao.AbstractDaoFactory;
 import org.xtremeware.testapp.da.AbstractDataAccessFactory;
 import org.xtremeware.testapp.service.ServiceFactory;
 

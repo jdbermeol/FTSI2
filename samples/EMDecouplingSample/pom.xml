@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.xtremeware</groupId>
-  <artifactId>TestApp</artifactId>
+  <artifactId>accionesMLG</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>TestApp</name>
+  <name>accionesMLG</name>
   <url>http://maven.apache.org</url>
     <build>
         <plugins>

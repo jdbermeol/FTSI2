@@ -2,9 +2,9 @@ package org.xtremeware.testapp.service;
 
 import org.xtremeware.testapp.da.DataAccessAdapter;
 import org.xtremeware.testapp.da.DataAccessException;
-import org.xtremeware.testapp.dao.AbstractDaoFactory;
-import org.xtremeware.testapp.dao.UserDao;
-import org.xtremeware.testapp.vo.UserVo;
+import com.mlg.acciones.dao.AbstractDaoFactory;
+import com.mlg.acciones.dao.UserDao;
+import com.mlg.acciones.vo.UserVo;
 
 public class UserService {
 

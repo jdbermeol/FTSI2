@@ -3,7 +3,7 @@ package org.xtremeware.testapp.facade;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.xtremeware.testapp.helper.Application;
-import org.xtremeware.testapp.vo.UserVo;
+import com.mlg.acciones.vo.UserVo;
 
 public class UserFacadeTest extends TestCase {
 

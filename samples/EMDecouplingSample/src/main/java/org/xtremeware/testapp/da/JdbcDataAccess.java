@@ -4,8 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.xtremeware.testapp.dao.AbstractDaoFactory;
-import org.xtremeware.testapp.dao.AbstractDaoFactory.DaoFactoryTypes;
+import com.mlg.acciones.dao.AbstractDaoFactory;
+import com.mlg.acciones.dao.AbstractDaoFactory.DaoFactoryTypes;
 
 public class JdbcDataAccess extends DataAccessAdapter<Connection> {
 

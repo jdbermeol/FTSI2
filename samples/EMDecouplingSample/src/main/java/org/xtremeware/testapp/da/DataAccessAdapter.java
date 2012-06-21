@@ -1,6 +1,6 @@
 package org.xtremeware.testapp.da;
 
-import org.xtremeware.testapp.dao.AbstractDaoFactory.DaoFactoryTypes;
+import com.mlg.acciones.dao.AbstractDaoFactory.DaoFactoryTypes;
 
 public abstract class DataAccessAdapter<E> {
 

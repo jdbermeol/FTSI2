@@ -1,25 +1,28 @@
-package org.xtremeware.testapp.vo;
+package com.mlg.acciones.entity;
 
-public class UserVo extends ValueObject {
+import com.mlg.acciones.vo.UserVo;
+import java.io.Serializable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@javax.persistence.Entity(name = "User")
+public class UserEntity implements Entity<UserVo>, Serializable {
 
-    private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String userName;
     private String password;
+    
 
-    public UserVo() {
+    public UserEntity() {
     }
 
-    public UserVo(Long id, String userName, String password) {
-        this.id = id;
-        this.userName = userName;
-        this.password = password;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -47,7 +50,7 @@ public class UserVo extends ValueObject {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final UserVo other = (UserVo) obj;
+        final UserEntity other = (UserEntity) obj;
         if (this.id != other.id && (this.id == null || !this.id.equals(other.id))) {
             return false;
         }
@@ -72,5 +75,14 @@ public class UserVo extends ValueObject {
     @Override
     public String toString() {
         return "UserVo{" + "id=" + id + ", username=" + userName + ", password=" + password + '}';
+    }
+
+    @Override
+    public UserVo toVo() {
+        UserVo newVo = new UserVo();
+        newVo.setId(this.getId());
+        newVo.setPassword(this.getPassword());
+        newVo.setUserName(this.getUserName());
+        return newVo;
     }
 }

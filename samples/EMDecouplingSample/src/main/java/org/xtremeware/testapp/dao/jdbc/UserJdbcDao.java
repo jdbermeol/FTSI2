@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.xtremeware.testapp.da.DataAccessAdapter;
 import org.xtremeware.testapp.da.DataAccessException;
-import org.xtremeware.testapp.dao.UserDao;
-import org.xtremeware.testapp.vo.UserVo;
+import com.mlg.acciones.dao.UserDao;
+import com.mlg.acciones.vo.UserVo;
 
 public class UserJdbcDao implements UserDao<Connection> {
 

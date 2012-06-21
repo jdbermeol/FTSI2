@@ -1,4 +1,4 @@
-package org.xtremeware.testapp.vo;
+package com.mlg.acciones.vo;
 
 import java.io.Serializable;
 

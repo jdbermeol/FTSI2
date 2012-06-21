@@ -1,9 +1,9 @@
 package org.xtremeware.testapp.dao.jpa;
 
 import javax.persistence.EntityManager;
-import org.xtremeware.testapp.dao.AbstractDaoFactory;
+import com.mlg.acciones.dao.AbstractDaoFactory;
 import org.xtremeware.testapp.da.JpaDataAccess;
-import org.xtremeware.testapp.dao.UserDao;
+import com.mlg.acciones.dao.UserDao;
 
 public class JpaDaoFactory extends AbstractDaoFactory<JpaDataAccess> {
 

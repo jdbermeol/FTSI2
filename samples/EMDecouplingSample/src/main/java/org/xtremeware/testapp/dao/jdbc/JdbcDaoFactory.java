@@ -1,9 +1,9 @@
 package org.xtremeware.testapp.dao.jdbc;
 
 import java.sql.Connection;
-import org.xtremeware.testapp.dao.AbstractDaoFactory;
+import com.mlg.acciones.dao.AbstractDaoFactory;
 import org.xtremeware.testapp.da.JdbcDataAccess;
-import org.xtremeware.testapp.dao.UserDao;
+import com.mlg.acciones.dao.UserDao;
 
 public class JdbcDaoFactory extends AbstractDaoFactory<JdbcDataAccess> {
 

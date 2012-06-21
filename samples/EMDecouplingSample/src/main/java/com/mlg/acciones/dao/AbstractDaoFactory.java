@@ -1,4 +1,4 @@
-package org.xtremeware.testapp.dao;
+package com.mlg.acciones.dao;
 
 import org.xtremeware.testapp.da.DataAccessAdapter;
 import org.xtremeware.testapp.dao.jdbc.JdbcDaoFactory;

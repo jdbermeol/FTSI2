@@ -2,12 +2,12 @@ package org.xtremeware.testapp.facade;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.xtremeware.testapp.dao.AbstractDaoFactory;
+import com.mlg.acciones.dao.AbstractDaoFactory;
 import org.xtremeware.testapp.da.AbstractDataAccessFactory;
 import org.xtremeware.testapp.da.DataAccessAdapter;
 import org.xtremeware.testapp.da.DataAccessException;
 import org.xtremeware.testapp.service.ServiceFactory;
-import org.xtremeware.testapp.vo.UserVo;
+import com.mlg.acciones.vo.UserVo;
 
 public class UserFacade {
 

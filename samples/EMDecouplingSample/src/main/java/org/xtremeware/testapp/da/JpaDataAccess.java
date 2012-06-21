@@ -1,8 +1,8 @@
 package org.xtremeware.testapp.da;
 
 import javax.persistence.EntityManager;
-import org.xtremeware.testapp.dao.AbstractDaoFactory;
-import org.xtremeware.testapp.dao.AbstractDaoFactory.DaoFactoryTypes;
+import com.mlg.acciones.dao.AbstractDaoFactory;
+import com.mlg.acciones.dao.AbstractDaoFactory.DaoFactoryTypes;
 
 public class JpaDataAccess extends DataAccessAdapter<EntityManager> {
 
